@@ -7,13 +7,13 @@ if sys.platform == "win32":
     base = "Win32GUI"
     icon="Logo.ico"
 executables = [
-        Executable("RoboTela.py",icon=icon ,base=base)
+        Executable("WhatsRobot.py",icon=icon ,base=base)
 ]
 
 buildOptions = dict(
         packages = [],
         includes = [],
-        include_files = [],
+        include_files = ['Logo.ico','ok.png','qrcode.png','whats.png','hand.gif','driver'],
         excludes = []
 )
 
