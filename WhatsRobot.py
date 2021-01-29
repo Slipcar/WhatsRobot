@@ -237,18 +237,6 @@ def envia_media(fileToSend):
             print("Erro ao enviar media", e)
 
 
-# def copiarImagem():
-#     try:
-#         my_img = cv2.imread(imagem, cv2.IMREAD_ANYCOLOR)
-#         # print(my_img)
-#         cv2.imshow("My image", my_img)
-#         pyautogui.hotkey('ctrl', 'c')
-#         cv2.waitKey(0)
-#         cv2.destroyAllWindows()
-#     except Exception as e:
-#         sg.popup('Erro ao carregar imagem','Formato de imagens suportadas: .png, .jpg ou .jpeg',icon='Logo.icon')
-
-
 def enviarMensagem(grupos, mensagem, bool):
     sg.popup_animated(
         'hand.gif', 'Aguarde a conclusão do processo de envio.')
