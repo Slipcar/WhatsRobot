@@ -212,30 +212,21 @@ def escreverXLS(listaNomes):
         col = 'A'
         comp = col + str(cont)
         sheet[comp] = cell
-        # print(sheet[comp])
-        # print(cell)
         cont += 1
     file.save("NaoLocalizados_" + dataHoraTexto + ".xlsx")
 
-
+# Envia mídia, imagens, pdfs, gifs...
 def envia_media(fileToSend):
-        """ Envia media """
         try:
             # Clica no botão adicionar
-            # driver.find_element_by_xpath("//span[contains(@data-icon,'clip')]").click()
             driver.find_element_by_css_selector("span[data-icon='clip']").click()
             # Seleciona input
             attach = driver.find_element_by_css_selector("input[type='file']")
             # Adiciona arquivo
             attach.send_keys(fileToSend)
             time.sleep(2)
-            # Seleciona botão enviar
-            # send = driver.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span/div/div")
-            # Clica no botão enviar
-            # send.click()
         except Exception as e:
-            print("Erro ao enviar media", e)
-
+            sg.popup('Erro ao enviar mídia', icon='Logo.icon')
 
 def enviarMensagem(grupos, mensagem, bool):
     sg.popup_animated(
@@ -273,8 +264,6 @@ def enviarMensagem(grupos, mensagem, bool):
                 envia_media(imagem)
                 time.sleep(0.5)
                 pyautogui.press('enter')
-                # botao_enviar = driver.find_element_by_xpath("//span[contains(@data-icon,'send')]")
-                # botao_enviar.click()
             else:
                 pyperclip.copy(mensagem)
                 pyperclip.paste()
@@ -282,24 +271,19 @@ def enviarMensagem(grupos, mensagem, bool):
                 pyautogui.hotkey('ctrl', 'v')
                 time.sleep(0.5)
                 pyautogui.press('enter')
-                # botao_enviar = driver.find_element_by_xpath("//span[contains(@data-icon,'send')]")
-                # botao_enviar.click()
         except:
             naoLocalizado.append(grupoNome)
             time.sleep(2)
             # print("Contato não localizado: " + grupoNome)
             pass
-        # else:
-        #     print("Envio Feito para: " + grupoNome)
 
     sg.popup_animated(image_source=None)
     time.sleep(5)
-    # print(driver)
     driver.quit()
     sg.popup('Envio Completo!',
              icon='logo.ico', no_titlebar=True, image='ok.png', grab_anywhere=True)
 
-
+# Redimensionar Imagens
 def convert_to_bytes(file_or_bytes, resize=None):
     '''
     Will convert into bytes and optionally resize an image that is a file or a base64 bytes object.
@@ -331,9 +315,10 @@ def convert_to_bytes(file_or_bytes, resize=None):
     del img
     return bio.getvalue()
 
+# Conexão com MongoDB
 def consultaUsuario(usuario, senha):
     global nome
-    url = "mongodb://Clientes:Clientes2k21@clusterslip-shard-00-00.4ykgn.gcp.mongodb.net:27017,clusterslip-shard-00-01.4ykgn.gcp.mongodb.net:27017,clusterslip-shard-00-02.4ykgn.gcp.mongodb.net:27017/login?ssl=true&replicaSet=ClusterSlip-shard-0&authSource=admin&retryWrites=true&w=majority"
+    url = "mongo url"
     try:
         client = MongoClient(url)
 
@@ -350,5 +335,7 @@ def consultaUsuario(usuario, senha):
         pass
         # sg.popup('Erro','Erro ao conectar com o banco entre em contato com o suporte.', e, icon="Logo.ico")
 
+    
+# Iniciar robô
 tela = TelaRobo()
 tela.Iniciar()
