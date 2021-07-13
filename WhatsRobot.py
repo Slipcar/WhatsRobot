@@ -332,8 +332,8 @@ def consultaUsuario(usuario, senha):
 
         return ativo
     except Exception as e:
+        sg.popup('Erro','Erro ao conectar com o banco entre em contato com o suporte.', e, icon="Logo.ico")
         pass
-        # sg.popup('Erro','Erro ao conectar com o banco entre em contato com o suporte.', e, icon="Logo.ico")
 
     
 # Iniciar robô
